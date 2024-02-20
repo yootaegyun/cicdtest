@@ -17,8 +17,8 @@ pipeline {
     stage('deploy kubernetes') {
       steps {
         sh '''
-        kubectl create deploy testpipeline --image=gyun99/cicdtest:green
-        kubectl expose deploy testpipeline --type=NodePort --port=80 --target-port=80 --name=testpipeline-svc
+        sudo kubectl create deploy testpipeline --image=gyun99/cicdtest:green --namespace=default
+        sudo kubectl expose deploy testpipeline --type=NodePort --port=80 --target-port=80 --name=testpipeline-svc
         '''
     }
   }
