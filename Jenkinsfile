@@ -18,8 +18,7 @@ pipeline {
       steps {
         sh '''
         sudo kubectl create deploy testpipeline --image=gyun99/cicdtest:green
-        sudo kubectl expose deploy testpipeline --type=NodePort --port=80 \
-        --target-port=80 --name=testpipeline-svc
+        sudo kubectl expose deploy testpipeline --type=NodePort --port=80 --target-port=80 --name=testpipeline-svc
         '''
     }
   }
