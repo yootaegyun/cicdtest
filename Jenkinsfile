@@ -17,8 +17,9 @@ pipeline {
     stage('deploy kubernetes') {
       steps {
         sh '''
-        sudo kubectl create deploy testpipeline --image=gyun99/cicdtest:green --namespace=default
-        sudo kubectl expose deploy testpipeline --type=NodePort --port=80 --target-port=80 --name=testpipeline-svc
+        ansible master -m command -a 'kubectl create deploy web-green --replicas=3 --image=brian24/cicdtest:green'
+        ansible master -m command -a 'kubectl expose deploy web-green --type=LoadBalancer --port=80 --target-port=80 --name=web-green-svc'
+
         '''
     }
   }
